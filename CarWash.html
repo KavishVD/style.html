@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KlinKar - Car Wash Service</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Base Inter font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom styles for hidden/visible */
+        .hidden {
+            display: none;
+        }
+        /* Page transition animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .page {
+            animation: fadeIn 0.3s ease-out;
+        }
+        /* Bottom Nav fixed layout */
+        .mobile-shell {
+            max-width: 420px;
+            margin: auto;
+            border: 1px solid #e2e8f0;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+            background: #f8fafc; /* Light grey bg for the app */
+        }
+        .main-content {
+            padding-bottom: 90px; /* Space for bottom nav */
+        }
+        .bottom-nav {
+            border-top: 1px solid #e2e8f0;
+        }
+        .nav-item-active {
+            color: #2563eb; /* Blue-600 */
+        }
+    </style>
+</head>
+<body class="bg-gray-200 p-4 md:p-8">
+
+    <div class="mobile-shell relative h-[850px] w-full overflow-hidden">
+        
+        <!-- Main Content Area -->
+        <div class="main-content relative h-full w-full overflow-y-auto">
+
+            <!-- PAGE: Customer Home -->
+            <div id="page-customer-home" class="page p-6">
+                <header class="flex items-center justify-between mb-6">
+                    <div>
+                        <span class="text-sm text-gray-500">Welcome back,</span>
+                        <h1 class="text-2xl font-bold text-gray-900">David</h1>
+                    </div>
+                    <div class="p-2 bg-white rounded-full shadow-sm border">
+                        <i data-lucide="user" class="text-gray-600"></i>
+                    </div>
+                </header>
+
+                <!-- Main Promo Card -->
+                <div class="relative p-6 bg-blue-600 text-white rounded-2xl shadow-lg mb-6 overflow-hidden">
+                    <div class="relative z-10">
+                        <h2 class="text-2xl font-bold mb-2">Get 20% Off</h2>
+                        <p class="mb-4 text-blue-100">Your first "Premium Detail" service.</p>
+                        <button onclick="navigateTo('page-booking-service')" class="bg-white text-blue-600 font-semibold px-5 py-2 rounded-lg shadow-md hover:bg-gray-100 transition">Book Now</button>
+                    </div>
+                    <i data-lucide="car" class="absolute -right-5 -bottom-5 text-blue-500 opacity-30" style="font-size: 100px; width: 100px; height: 100px;"></i>
+                </div>
+                
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Our Services</h3>
+                
+                <!-- Service List -->
+                <div class="space-y-4">
+                    <div onclick="navigateTo('page-booking-service')" class="flex items-center p-4 bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition cursor-pointer">
+                        <div class="p-3 bg-blue-100 rounded-lg mr-4">
+                            <i data-lucide="sparkles" class="text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Premium Wash</h4>
+                            <p class="text-sm text-gray-500">Exterior wash, tire shine, and wax.</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="ml-auto text-gray-400"></i>
+                    </div>
+
+                    <div onclick="navigateTo('page-booking-service')" class="flex items-center p-4 bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition cursor-pointer">
+                        <div class="p-3 bg-green-100 rounded-lg mr-4">
+                            <i data-lucide="spray-can" class="text-green-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Interior Detailing</h4>
+                            <p class="text-sm text-gray-500">Deep clean, vacuum, and upholstery.</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="ml-auto text-gray-400"></i>
+                    </div>
+
+                    <div onclick="navigateTo('page-booking-service')" class="flex items-center p-4 bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition cursor-pointer">
+                        <div class="p-3 bg-purple-100 rounded-lg mr-4">
+                            <i data-lucide="shield-check" class="text-purple-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Ceramic Coating</h4>
+                            <p class="text-sm text-gray-500">Long-lasting protection and shine.</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="ml-auto text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE: Customer Bookings -->
+            <div id="page-customer-bookings" class="page hidden p-6">
+                <header class="mb-6">
+                    <h1 class="text-2xl font-bold text-gray-900">My Bookings</h1>
+                </header>
+
+                <!-- Tabs -->
+                <div class="flex border-b border-gray-300 mb-6">
+                    <button class="flex-1 py-3 font-semibold text-blue-600 border-b-2 border-blue-600">Upcoming</button>
+                    <button class="flex-1 py-3 font-semibold text-gray-500">Completed</button>
+                </div>
+
+                <!-- Upcoming Booking Card -->
+                <div class="space-y-4">
+                    <div class="p-4 bg-white rounded-xl shadow-sm border border-gray-200">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-sm font-semibold text-green-600 bg-green-100 px-3 py-1 rounded-full">Confirmed</span>
+                            <span class="text-sm font-semibold text-gray-700">₹1,299</span>
+                        </div>
+                        <h3 class="font-semibold text-lg text-gray-900 mb-1">Interior Detailing</h3>
+                        <p class="text-sm text-gray-500 mb-4">For Toyota Camry (KL 01 AB 1234)</p>
+                        
+                        <div class="flex items-center text-sm text-gray-600 mb-4">
+                            <i data-lucide="calendar" class="w-4 h-4 mr-2"></i>
+                            <span>Today, Nov 7 &nbsp;&bull;&nbsp; 4:00 PM</span>
+                        </div>
+                        
+                        <div class="flex items-center text-sm text-gray-600 mb-4">
+                            <i data-lucide="map-pin" class="w-4 h-4 mr-2"></i>
+                            <span>123, MG Road, Kochi, Kerala</span>
+                        </div>
+
+                        <div class="flex space-x-2">
+                            <button class="flex-1 text-sm bg-gray-100 text-gray-700 font-semibold py-2 rounded-lg hover:bg-gray-200">Cancel</button>
+                            <button class="flex-1 text-sm bg-blue-100 text-blue-600 font-semibold py-2 rounded-lg hover:bg-blue-200">Reschedule</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE: Customer Profile -->
+            <div id="page-customer-profile" class="page hidden p-6">
+                <header class="mb-6 text-center">
+                    <img src="https://placehold.co/100x100/E2E8F0/64748B?text=D" alt="Profile Picture" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white shadow-md">
+                    <h1 class="text-2xl font-bold text-gray-900">David Matthew</h1>
+                    <p class="text-gray-500">david.m@gmail.com</p>
+                </header>
+
+                <div class="space-y-2">
+                    <a href="#" class="flex items-center p-4 bg-white rounded-xl shadow-sm border border-gray-200">
+                        <i data-lucide="user" class="mr-3 text-blue-600"></i>
+                        <span class="font-medium text-gray-800">Account Details</span>
+                        <i data-lucide="chevron-right" class="ml-auto text-gray-400"></i>
+                    </a>
+                    <a href="#" class="flex items-center p-4 bg-white rounded-xl shadow-sm border border-gray-200">
+                        <i data-lucide="credit-card" class="mr-3 text-blue-600"></i>
+                        <span class="font-medium text-gray-800">Payment Methods</span>
+                        <i data-lucide="chevron-right" class="ml-auto text-gray-400"></i>
+                    </a>
+                    <a href="#" class="flex items-center p-4 bg-white rounded-xl shadow-sm border border-gray-200">
+                        <i data-lucide="car" class="mr-3 text-blue-600"></i>
+                        <span class="font-medium text-gray-800">My Vehicles</span>
+                        <i data-lucide="chevron-right" class="ml-auto text-gray-400"></i>
+                    </a>
+                    <a href="#" class="flex items-center p-4 bg-white rounded-xl shadow-sm border border-gray-200">
+                        <i data-lucide="help-circle" class="mr-3 text-blue-600"></i>
+                        <span class="font-medium text-gray-800">Help & Support</span>
+                        <i data-lucide="chevron-right" class="ml-auto text-gray-400"></i>
+                    </a>
+                </div>
+
+                <button 
+                    onclick="switchUser('pro')" 
+                    class="w-full mt-6 bg-green-600 text-white font-semibold py-3 rounded-xl shadow-md hover:bg-green-700 transition">
+                    Switch to Service Pro
+                </button>
+            </div>
+
+            <!-- PAGE: Pro Dashboard -->
+            <div id="page-pro-dashboard" class="page hidden p-6">
+                <header class="flex items-center justify-between mb-6">
+                    <div>
+                        <span class="text-sm text-gray-500">Hello, Service Team 1</span>
+                        <h1 class="text-2xl font-bold text-gray-900">Dashboard</h1>
+                    </div>
+                    <div class="p-2 bg-white rounded-full shadow-sm border">
+                        <i data-lucide="bell" class="text-gray-600"></i>
+                    </div>
+                </header>
+                
+                <!-- Stats -->
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="p-4 bg-white rounded-xl shadow-sm border">
+                        <i data-lucide="clipboard-list" class="text-blue-600 mb-2"></i>
+                        <span class="text-2xl font-bold text-gray-900">3</span>
+                        <p class="text-sm text-gray-500">New Requests</p>
+                    </div>
+                    <div class="p-4 bg-white rounded-xl shadow-sm border">
+                        <i data-lucide="check-circle" class="text-green-600 mb-2"></i>
+                        <span class="text-2xl font-bold text-gray-900">5</span>
+                        <p class="text-sm text-gray-500">Jobs Today</p>
+                    </div>
+                </div>
+                
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">New Job Requests</h3>
+
+                <!-- Job List -->
+                <div class="space-y-4">
+                    <div class="p-4 bg-white rounded-xl shadow-sm border border-gray-200">
+                        <h4 class="font-semibold text-gray-900 text-lg">Interior Detailing</h4>
+                        <p class="text-sm text-gray-500 mb-3">Toyota Camry</p>
+                        
+                        <div class="flex items-center text-sm text-gray-600 mb-3">
+                            <i data-lucide="map-pin" class="w-4 h-4 mr-2"></i>
+                            <span>123, MG Road, Kochi (2.5km away)</span>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-semibold text-gray-800">Est. Earning: <span class="text-green-600">₹1,299</span></span>
+                            <span class="text-sm text-blue-600 font-medium">On-Demand</span>
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <button class="flex-1 text-sm bg-gray-100 text-gray-700 font-semibold py-2 rounded-lg hover:bg-gray-200">Reject</button>
+                            <button class="flex-1 text-sm bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700">Accept</button>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-white rounded-xl shadow-sm border border-gray-200">
+                        <h4 class="font-semibold text-gray-900 text-lg">Premium Wash</h4>
+                        <p class="text-sm text-gray-500 mb-3">Maruti Swift</p>
+                        
+                        <div class="flex items-center text-sm text-gray-600 mb-3">
+                            <i data-lucide="map-pin" class="w-4 h-4 mr-2"></i>
+                            <span>Kaloor, Ernakulam (4.1km away)</span>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-semibold text-gray-800">Est. Earning: <span class="text-green-600">₹499</span></span>
+                            <span class="text-sm text-gray-500 font-medium">Scheduled: 4:00 PM</span>
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <button class="flex-1 text-sm bg-gray-100 text-gray-700 font-semibold py-2 rounded-lg hover:bg-gray-200">Reject</button>
+                            <button class="flex-1 text-sm bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700">Accept</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE: Pro Route -->
+            <div id="page-pro-route" class="page hidden p-6">
+                <header class="mb-6">
+                    <h1 class="text-2xl font-bold text-gray-900">My Route: Today</h1>
+                </header>
+                
+                <!-- Mock Map -->
+                <div class="h-48 bg-gray-300 rounded-xl mb-6 flex items-center justify-center">
+                    <p class="text-gray-500">Google Map Preview</p>
+                </div>
+
+                <!-- Route List -->
+                <div class="space-y-4">
+                    <div class="p-4 bg-white rounded-xl shadow-sm border border-gray-200">
+                        <span class="text-xs font-semibold uppercase text-gray-500">Stop 1 - 2:00 PM</span>
+                        <h4 class="font-semibold text-gray-900 text-lg mt-1">Premium Wash</h4>
+                        <p class="text-sm text-gray-500 mb-3">Maruti Swift</p>
+                        <div class="flex items-center text-sm text-gray-600 mb-4">
+                            <i data-lucide="map-pin" class="w-4 h-4 mr-2"></i>
+                            <span>Kaloor, Ernakulam</span>
+                        </div>
+                        <button class="w-full text-sm bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700">Start Navigation</button>
+                    </div>
+                    <div class="p-4 bg-white rounded-xl shadow-sm border border-gray-200">
+                        <span class="text-xs font-semibold uppercase text-gray-500">Stop 2 - 4:00 PM</span>
+                        <h4 class="font-semibold text-gray-900 text-lg mt-1">Interior Detailing</h4>
+                        <p class="text-sm text-gray-500 mb-3">Toyota Camry</p>
+                        <div class="flex items-center text-sm text-gray-600 mb-4">
+                            <i data-lucide="map-pin" class="w-4 h-4 mr-2"></i>
+                            <span>123, MG Road, Kochi</span>
+                        </div>
+                        <button class="w-full text-sm bg-gray-100 text-gray-700 font-semibold py-2 rounded-lg hover:bg-gray-200">Navigate (Pending)</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE: Pro Profile/Settings -->
+            <div id="page-pro-profile" class="page hidden p-6">
+                <header class="mb-6 text-center">
+                    <img src="https://placehold.co/100x100/E2E8F0/64748B?text=T" alt="Profile Picture" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white shadow-md">
+                    <h1 class="text-2xl font-bold text-gray-900">Service Team 1</h1>
+                    <p class="text-gray-500">team1@klinkar.com</p>
+                </header>
+                
+                <!-- Stats -->
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="p-4 bg-white rounded-xl shadow-sm border text-center">
+                        <span class="text-2xl font-bold text-gray-900">₹4,250</span>
+                        <p class="text-sm text-gray-500">Today's Earnings</p>
+                    </div>
+                    <div class="p-4 bg-white rounded-xl shadow-sm border text-center">
+                        <span class="text-2xl font-bold text-green-600">4.8 <span class="text-lg">★</span></span>
+                        <p class="text-sm text-gray-500">Overall Rating</p>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <a href="#" class="flex items-center p-4 bg-white rounded-xl shadow-sm border border-gray-200">
+                        <i data-lucide="history" class="mr-3 text-green-600"></i>
+                        <span class="font-medium text-gray-800">Job History</span>
+                        <i data-lucide="chevron-right" class="ml-auto text-gray-400"></i>
+                    </a>
+                    <a href="#" class="flex items-center p-4 bg-white rounded-xl shadow-sm border border-gray-200">
+                        <i data-lucide="settings" class="mr-3 text-green-600"></i>
+                        <span class="font-medium text-gray-800">Service Settings</span>
+                        <i data-lucide="chevron-right" class="ml-auto text-gray-400"></i>
+                    </a>
+                    <a href="#" class="flex items-center p-4 bg-white rounded-xl shadow-sm border border-gray-200">
+                        <i data-lucide="help-circle" class="mr-3 text-green-600"></i>
+                        <span class="font-medium text-gray-800">Help & Support</span>
+                        <i data-lucide="chevron-right" class="ml-auto text-gray-400"></i>
+                    </a>
+                </div>
+                
+                <button 
+                    onclick="switchUser('customer')" 
+                    class="w-full mt-6 bg-blue-600 text-white font-semibold py-3 rounded-xl shadow-md hover:bg-blue-700 transition">
+                    Switch to Customer View
+                </button>
+            </div>
+
+
+            <!-- BOOKING FLOW: Select Service -->
+            <div id="page-booking-service" class="page hidden p-6">
+                <header class="flex items-center mb-6">
+                    <button onclick="goBack()" class="p-2 rounded-lg hover:bg-gray-100 mr-2">
+                        <i data-lucide="arrow-left" class="text-gray-700"></i>
+                    </button>
+                    <h1 class="text-2xl font-bold text-gray-900">Book a Service</h1>
+                </header>
+
+                <div class="space-y-3">
+                    <label class="block p-4 bg-white rounded-xl shadow-sm border border-gray-200 cursor-pointer">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Premium Wash</h4>
+                                <p class="text-sm text-gray-500">Est. 60 mins</p>
+                            </div>
+                            <span class="font-semibold text-lg text-gray-800 mr-2">₹499</span>
+                            <input type="radio" name="service" class="form-radio h-5 w-5 text-blue-600">
+                        </div>
+                    </label>
+                    <label class="block p-4 bg-white rounded-xl shadow-sm border border-gray-200 cursor-pointer">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Interior Detailing</h4>
+                                <p class="text-sm text-gray-500">Est. 2-3 hours</p>
+                            </div>
+                            <span class="font-semibold text-lg text-gray-800 mr-2">₹1,299</span>
+                            <input type="radio" name="service" class="form-radio h-5 w-5 text-blue-600">
+                        </div>
+                    </label>
+                    <label class="block p-4 bg-white rounded-xl shadow-sm border border-gray-200 cursor-pointer">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Ceramic Coating</h4>
+                                <p class="text-sm text-gray-500">Est. 4-5 hours</p>
+                            </div>
+                            <span class="font-semibold text-lg text-gray-800 mr-2">₹7,999</span>
+                            <input type="radio" name="service" class="form-radio h-5 w-5 text-blue-600">
+                        </div>
+                    </label>
+                </div>
+
+                <div class="fixed bottom-6 left-0 right-0 p-4 max-w-[420px] mx-auto">
+                    <button onclick="navigateTo('page-booking-time')" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-700 transition">
+                        Select Time & Location
+                    </button>
+                </div>
+            </div>
+
+            <!-- BOOKING FLOW: Select Time -->
+            <div id="page-booking-time" class="page hidden p-6">
+                <header class="flex items-center mb-6">
+                    <button onclick="goBack()" class="p-2 rounded-lg hover:bg-gray-100 mr-2">
+                        <i data-lucide="arrow-left" class="text-gray-700"></i>
+                    </button>
+                    <h1 class="text-2xl font-bold text-gray-900">Time & Location</h1>
+                </header>
+
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Service Type</h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button class="p-4 bg-blue-100 text-blue-700 font-semibold rounded-xl border-2 border-blue-600 text-center">
+                            <i data-lucide="clock" class="mx-auto mb-2"></i>
+                            On-Demand
+                        </button>
+                        <button class="p-4 bg-white text-gray-700 font-semibold rounded-xl border border-gray-300 text-center">
+                            <i data-lucide="calendar" class="mx-auto mb-2"></i>
+                            Schedule
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Your Location</h3>
+                    <div class="p-4 bg-white rounded-xl shadow-sm border border-gray-200">
+                        <div class="flex items-center">
+                            <i data-lucide="map-pin" class="text-blue-600 mr-3"></i>
+                            <div>
+                                <span class="font-semibold text-gray-800">Home</span>
+                                <p class="text-sm text-gray-500">123, MG Road, Kochi, Kerala</p>
+                            </div>
+                            <a href="#" class="ml-auto text-sm font-semibold text-blue-600">Change</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Your Vehicle</h3>
+                    <div class="p-4 bg-white rounded-xl shadow-sm border border-gray-200">
+                        <div class="flex items-center">
+                            <i data-lucide="car" class="text-blue-600 mr-3"></i>
+                            <div>
+                                <span class="font-semibold text-gray-800">Toyota Camry</span>
+                                <p class="text-sm text-gray-500">KL 01 AB 1234</p>
+                            </div>
+                            <a href="#" class="ml-auto text-sm font-semibold text-blue-600">Change</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fixed bottom-6 left-0 right-0 p-4 max-w-[420px] mx-auto">
+                    <button onclick="navigateTo('page-booking-confirm')" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-700 transition">
+                        Review & Confirm
+                    </button>
+                </div>
+            </div>
+
+            <!-- BOOKING FLOW: Confirm -->
+            <div id="page-booking-confirm" class="page hidden p-6">
+                <header class="flex items-center mb-6">
+                    <button onclick="goBack()" class="p-2 rounded-lg hover:bg-gray-100 mr-2">
+                        <i data-lucide="arrow-left" class="text-gray-700"></i>
+                    </button>
+                    <h1 class="text-2xl font-bold text-gray-900">Confirmation</h1>
+                </header>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border">
+                    <h3 class="text-xl font-semibold mb-4">Order Summary</h3>
+                    
+                    <div class="pb-4 border-b border-gray-200">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-600">Interior Detailing</span>
+                            <span class="font-medium text-gray-900">₹1,299.00</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-600">Service Fee</span>
+                            <span class="font-medium text-gray-900">₹50.00</span>
+                        </div>
+                        <div class="flex justify-between items-center text-green-600">
+                            <span class="">Discount</span>
+                            <span class="font-medium">-₹0.00</span>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center pt-4 mb-6">
+                        <span class="text-lg font-bold text-gray-900">Total</span>
+                        <span class="text-2xl font-bold text-gray-900">₹1,349.00</span>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Payment Method</h3>
+                    <div class="p-4 bg-gray-50 rounded-xl border border-gray-200">
+                        <div class="flex items-center">
+                            <i data-lucide="credit-card" class="text-blue-600 mr-3"></i>
+                            <div>
+                                <span class="font-semibold text-gray-800">Visa **** 4242</span>
+                            </div>
+                            <a href="#" class="ml-auto text-sm font-semibold text-blue-600">Change</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fixed bottom-6 left-0 right-0 p-4 max-w-[420px] mx-auto">
+                    <button onclick="showBookingSuccess()" class="w-full bg-green-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-green-700 transition">
+                        Confirm & Pay
+                    </button>
+                </div>
+            </div>
+
+            <!-- SUCCESS MODAL -->
+            <div id="modal-success" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-6">
+                <div class="bg-white p-8 rounded-2xl shadow-2xl text-center max-w-sm mx-auto">
+                    <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="check" class="w-8 h-8"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Booking Confirmed!</h2>
+                    <p class="text-gray-600 mb-6">Your Interior Detailing is scheduled for Today at 4:00 PM.</p>
+                    <button onclick="navigateTo('page-customer-bookings', true)" class="w-full bg-blue-600 text-white font-semibold py-3 rounded-xl hover:bg-blue-700">
+                        View My Bookings
+                    </button>
+                </div>
+            </div>
+
+        </div> <!-- /main-content -->
+
+        <!-- Bottom Navigation -->
+        <nav id="bottom-nav-customer" class="bottom-nav absolute bottom-0 left-0 right-0 h-[85px] bg-white/95 backdrop-blur-md shadow-inner flex justify-around items-center rounded-b-3xl">
+            <button onclick="navigateTo('page-customer-home')" class="nav-item flex flex-col items-center justify-center text-gray-500 nav-item-active" data-page="page-customer-home">
+                <i data-lucide="home" class="w-6 h-6 mb-1"></i>
+                <span class="text-xs font-medium">Home</span>
+            </button>
+            <button onclick="navigateTo('page-customer-bookings')" class="nav-item flex flex-col items-center justify-center text-gray-500" data-page="page-customer-bookings">
+                <i data-lucide="calendar" class="w-6 h-6 mb-1"></i>
+                <span class="text-xs font-medium">Bookings</span>
+            </button>
+            <button onclick="navigateTo('page-booking-service')" class="flex items-center justify-center w-16 h-16 bg-blue-600 text-white rounded-full shadow-lg -mt-10 border-4 border-white">
+                <i data-lucide="plus" class="w-8 h-8"></i>
+            </button>
+            <button onclick="navigateTo('page-customer-profile')" class="nav-item flex flex-col items-center justify-center text-gray-500" data-page="page-customer-profile">
+                <i data-lucide="user" class="w-6 h-6 mb-1"></i>
+                <span class="text-xs font-medium">Profile</span>
+            </button>
+        </nav>
+        
+        <nav id="bottom-nav-pro" class="bottom-nav hidden absolute bottom-0 left-0 right-0 h-[85px] bg-white/95 backdrop-blur-md shadow-inner flex justify-around items-center rounded-b-3xl">
+            <button onclick="navigateTo('page-pro-dashboard')" class="nav-item flex flex-col items-center justify-center text-gray-500 nav-item-active" data-page="page-pro-dashboard">
+                <i data-lucide="layout-grid" class="w-6 h-6 mb-1"></i>
+                <span class="text-xs font-medium">Dashboard</span>
+            </button>
+            <button onclick="navigateTo('page-pro-route')" class="nav-item flex flex-col items-center justify-center text-gray-500" data-page="page-pro-route">
+                <i data-lucide="map" class="w-6 h-6 mb-1"></i>
+                <span class="text-xs font-medium">My Route</span>
+            </button>
+            <button onclick="navigateTo('page-pro-profile')" class="nav-item flex flex-col items-center justify-center text-gray-500" data-page="page-pro-profile">
+                <i data-lucide="user-cog" class="w-6 h-6 mb-1"></i>
+                <span class="text-xs font-module">Profile</span>
+            </button>
+        </nav>
+        
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Simple state management
+        let appState = {
+            currentUser: 'customer', // 'customer' or 'pro'
+            currentPage: 'page-customer-home',
+            pageHistory: ['page-customer-home']
+        };
+
+        function navigateTo(pageId, isModalAction = false) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.add('hidden');
+            });
+            
+            // Hide modal
+            if (isModalAction) {
+                document.getElementById('modal-success').classList.add('hidden');
+            }
+
+            // Show the target page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                appState.currentPage = pageId;
+
+                // Add to history if it's not a modal action
+                if (!isModalAction && appState.pageHistory[appState.pageHistory.length - 1] !== pageId) {
+                    appState.pageHistory.push(pageId);
+                }
+
+                // Update active nav item
+                updateNavActiveState(pageId);
+                
+                // Scroll to top of new page
+                document.querySelector('.main-content').scrollTop = 0;
+            } else {
+                console.error("Page not found:", pageId);
+            }
+        }
+        
+        function goBack() {
+            // Remove current page from history
+            appState.pageHistory.pop();
+            // Get the last page
+            const lastPage = appState.pageHistory[appState.pageHistory.length - 1];
+            
+            if (lastPage) {
+                // Manually navigate without pushing to history
+                document.querySelectorAll('.page').forEach(page => page.classList.add('hidden'));
+                document.getElementById(lastPage).classList.remove('hidden');
+                appState.currentPage = lastPage;
+                updateNavActiveState(lastPage);
+            } else {
+                // Fallback to home
+                navigateTo(appState.currentUser === 'customer' ? 'page-customer-home' : 'page-pro-dashboard');
+            }
+        }
+
+        function updateNavActiveState(pageId) {
+            const userNav = document.getElementById(`bottom-nav-${appState.currentUser}`);
+            if (userNav) {
+                userNav.querySelectorAll('.nav-item').forEach(item => {
+                    if (item.dataset.page === pageId) {
+                        item.classList.add('nav-item-active');
+                    } else {
+                        item.classList.remove('nav-item-active');
+                    }
+                });
+            }
+        }
+
+        function switchUser(userType) {
+            appState.currentUser = userType;
+            appState.pageHistory = []; // Reset history
+
+            if (userType === 'pro') {
+                document.getElementById('bottom-nav-customer').classList.add('hidden');
+                document.getElementById('bottom-nav-pro').classList.remove('hidden');
+                navigateTo('page-pro-dashboard');
+            } else {
+                document.getElementById('bottom-nav-pro').classList.add('hidden');
+                document.getElementById('bottom-nav-customer').classList.remove('hidden');
+                navigateTo('page-customer-home');
+            }
+        }
+        
+        function showBookingSuccess() {
+            document.getElementById('modal-success').classList.remove('hidden');
+        }
+
+        // Initial page load
+        navigateTo('page-customer-home');
+
+    </script>
+</body>
+</html>

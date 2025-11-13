@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ball{
+       height: 100px;
+       width: 100px;
+       background-color: pink;
+       border-radius: 50%;
+       animation-name: bounce;
+       animation-duration: 2s;
+       animation-iteration-count: infinite;
+       animation-delay: 0s;
+       animation-direction: alternate;
+    
+    }
+    @keyframes bounce{
+  0%{
+    transform: translate(0);
+  }
+  50%{
+    transform: translateY(-100px);
+  }
+  100%{
+    transform: translateY(0);
+  }
+  from{background-color: pink; margin-bottom:30px;}
+  to{background-color: rgb(182, 122, 239);
+  }
+  20%{
+    background-color: red;
+  }
+  60%{
+    background-color: chocolate;
+  }
+    }
+        </style>
+
+    </head>
+    <body>
+        <h1> <b>Note:</b> This is bouncing ball ->   </h1>
+        <div>
+      <div class="ball"> 
+       
+      </div>
+      <hr>
+      </div>
+    </body>
+</html>

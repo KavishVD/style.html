@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechFlow Articles</title>
+    <style>
+        /* --- Google Font --- */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        /* --- Reset & Base --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Nav --- */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb; /* Example brand color */
+        }
+
+        header ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        header li {
+            font-weight: 500;
+            color: #4a5568;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        header li:hover {
+            color: #2563eb;
+        }
+
+        /* --- Main Content --- */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        main h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 0.5rem;
+        }
+
+        main p {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin-bottom: 2rem;
+        }
+
+        main input[type="text"] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        main input[type="text"]:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        main h3 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+
+        /* --- Article Card Grid (The Transformation) --- */
+        .article-list {
+            display: grid;
+            /* This makes it responsive: creates 250px columns, 
+               but stretches them to fit. */
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .article {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.07);
+        }
+
+        /* This was just text, now it's a styled content block */
+        .article h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a202c;
+            padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+        }
+        
+        .article p {
+            font-size: 0.9rem;
+            color: #4a5568;
+            margin-bottom: 0;
+            padding: 0 1.5rem 1.5rem 1.5rem;
+        }
+
+        .article a {
+            display: block;
+            background-color: #f8fafd;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            color: #2563eb;
+            border-top: 1px solid #e2e8f0;
+            transition: background-color 0.2s;
+        }
+
+        .article a:hover {
+            background-color: #eff6ff;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 
+      THIS HTML IS IDENTICAL TO THE "BEFORE" FILE.
+      ALL CHANGES ARE 100% CSS.
+    -->
+    <header>
+        <nav>
+            <h1>TechFlow</h1>
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>Contact</li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Knowledge Base</h2>
+        <p>Find the answers you need.</p>
+        <input type="text" placeholder="Search articles...">
+        
+        <h3>Trending Topics</h3>
+        <div class="article-list">
+            <div class="article">
+                <h4>How to Reset Your Password</h4>
+                <p>Learn how to reset your account password.</p>
+                <a href="#">Read more</a>
+            </div>
+            <div class="article">
+                <h4>Understanding Your Dashboard</h4>
+                <p>A complete guide to all the dashboard features.</p>
+                <a href="#">Read more</a>
+            </div>
+            <div class="article">
+                <h4>Billing & Subscriptions Guide</h4>
+                <p>How to manage your payment methods.</p>
+                <a href="#">Read more</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flex</title>
+              <style>
+                @media(max width:600px){
+                  p{
+                    background-color: plum;
+                    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+                  }
+                }
+                  @media ( min-width: 601px_) and (max-width:1024px){
+                   p{
+                    background-color: darkviolet;
+                    color: black;
+                    font-family: 'Courier New', Courier, monospace;
+                    
+                   }
+                   .box{
+                    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                    font-weight: 50px;
+                    color: chartreuse;
+
+
+ 
+                   }
+                  }
+                    
+                  
+                </style>
+                
+                html {
+                  font-size: 1 rem;
+                }
+            .px-text{
+              font-size: 30px;
+            }
+            .pt-text{
+              font-size: 24pt;
+            }
+            .em-text{
+              font-size: 2em;
+            }
+            .percent-text{
+              font-size: 150%;
+            }
+            .flex-container{
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              align-items: flex-end;
+              height: 100px;
+              width: 50%;
+             flex-direction: row-reverse;
+
+            }
+            .flex-item{
+              width: 200px;
+              flex-grow: 10px;
+              align-self: center;
+              
+            }
+            .item4{
+              order: 3;
+           
+            }
+        
+
+</head>
+<body>
+
+  <h1>Font Size Units Comparison</h1>
+<div class="flex-container" > 
+  <div class="flex-item item 1" style="background-color: pink;" > I am div box </div>
+    <div class="flex-item item 2" style="background-color: darkslateblue;" > this is flex item item 2 </div>
+    <div class="flex-item item 3" style="background-color: plum;" > this is flex item item 3 </div>
+    <div class="flexitem4" style="background-color:lightblue ;" > item 4 </div>
+ <div class="item5" style="background-color: deepskyblue;" > item 5</div>
+ <div class="item6" style="background-color: aquamarine;" > this is insane and cool to have a such</div>
+
+
+   <p> Adjust sizes and see the changes </p>
+    </div>
+  </div> 
+</div>
+  <div class="px-text">
+    <h2>Font Size in px</h2>
+    <p>This text uses 30px font size.</p>
+  </div>
+
+  <div class="pt-text">
+    <h2>Font Size in pt</h2>
+    <p>This text uses 24pt font size.</p>
+  </div>
+  <p>I am this in the game</p>
+
+  <div class="box"> this is div block</div>
+  
+    </div>
+  </div>
+
+</body>
+</html>

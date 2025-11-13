@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"name": "images 2",
+			"path": "../Downloads/images 2"
+		},
+		{
+			"name": "Applications",
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Applications"
+	}
+}
